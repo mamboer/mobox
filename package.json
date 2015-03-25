@@ -1,0 +1,48 @@
+{
+  "name": "mobox",
+  "version": "1.0.0",
+  "title": "Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects",
+  "description": "MOBOX = Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects, Inspired by Codrop's DialogEffect at github.com/codrops/DialogEffects",
+  "main": "dist/mobox.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mamboer/mobox.git"
+  },
+  "keywords": [
+    "Dialog",
+    "Modal",
+    "Popbox",
+    "Overlay",
+    "Dialog Effects",
+    "mobox",
+    "css3",
+    "animation"
+  ],
+  "author": "Levin Van",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mamboer/mobox/issues"
+  },
+  "homepage": "https://github.com/mamboer/mobox",
+  "devDependencies": {
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^2.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-csso": "^1.0.0",
+    "gulp-jshint": "^1.9.4",
+    "gulp-less": "^3.0.2",
+    "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-swig": "^0.7.4",
+    "gulp-uglify": "^1.1.0",
+    "jshint-stylish": "^1.0.1"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^1.5.1"
+  }
+}

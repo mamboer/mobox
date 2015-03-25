@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>{{name}}.js | Creative Dialog Effects</title>
+        <meta name="description" content="{{description}}" />
+        <meta name="keywords" content="{{keywords|join(',')}}" />
+        <meta name="author" content="{{author|raw}}" />
+        <link rel="stylesheet" type="text/css" href="dist/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="dist/css/demo.css" />
+        <!-- common styles -->
+        <link rel="stylesheet" type="text/css" href="dist/css/mobox.css" />
+        <!-- individual effect -->
+        <link rel="stylesheet" type="text/css" href="dist/css/effect-susan.css" />
+        <link rel="stylesheet" type="text/css" href="dist/css/effect-sandra.css" />
+        <script src="dist/vendors/modernizr/modernizr.custom.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+            <div class="content">
+                <header class="codrops-header">
+                    <h1><span class="logo">{{name}}.js</span> <span>A collection of</span> Creative Dialog Effects</h1>
+                    <div class="button-wrap"><button data-dialog="somedialog" class="trigger">Open Dialog</button></div>
+                </header>
+                <nav id="menu" class="menu">
+                    <div>
+                        <h2>Simple</h2>
+                        <ul>
+                            <li><a href="?sandra" data-effect="sandra">Sandra</a></li>
+                            <li><a href="javascript:;">Sally</a></li>
+                        </ul>
+                        <h2>Body</h2>
+                        <ul>
+                            <li><a href="javascript:;">Dean</a></li>
+                            <li><a data-effect="susan" href="?susan" class="current-demo">Susan</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Move/Slide</h2>
+                        <ul>
+                            <li><a href="javascript:;">Cathy</a></li>
+                            <li><a href="javascript:;">Annie</a></li>
+                            <li><a href="javascript:;">Val</a></li>
+                            <li><a href="javascript:;">Ricky</a></li>
+                            <li><a href="javascript:;">Donna</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Sticky</h2>
+                        <ul>
+                            <li><a href="javascript:;">Ken</a></li>
+                            <li><a href="javascript:;">Alex</a></li>
+                        </ul>
+                        <h2>Jelly</h2>
+                        <ul>
+                            <li><a href="javascript:;">Don</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>SVG</h2>
+                        <ul>
+                            <li><a href="javascript:;">Laura</a></li>
+                            <li><a href="javascript:;">Jamie</a></li>
+                            <li><a href="javascript:;">Henry</a></li>
+                            <li><a href="javascript:;">Jim</a></li>
+                            <li><a href="javascript:;">Wilma</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div><!-- /content -->
+        </div><!-- /container -->
+        <div id="somedialog" class="mobox" data-effect="susan" data-effect-rel=".container">
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span type="button" class="mobox-icon-close" data-dialog-close></span>
+                <h2 class="mobox-title"><strong>Howdy</strong>, I'm a dialog box</h2>
+                <div class="mobox-cont"></div>
+                <div class="mobox-actions"><button class="action" data-dialog-close>Close</button></div>
+            </div>
+        </div>
+        <script src="dist/vendors/classor/dist/classy.js"></script>
+        <script src="dist/js/mobox.js"></script>
+        <script>
+            (function() {
+
+                var effect = location.search.replace('?','')||'susan',
+                    container = document.getElementById( 'container' ),
+                    dlgtrigger = document.querySelector( '[data-dialog]' ),
+                    somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
+                    dlg = new Mobox(somedialog,{sticky:true,effect:effect}),
+                    allEffects = document.getElementById('menu').querySelectorAll('[data-effect]');
+    
+                dlgtrigger.addEventListener( 'click', dlg.show.bind(dlg) );
+
+                var forEach = function(arr,fn){
+                    var len = arr.length;
+                    for(var i=0;i<len;i++){
+                        fn(arr[i]);
+                    }
+                };
+
+                var resetMenu = function(){
+                    forEach(allEffects,function(item){
+                        classy.remove(item,'current-demo');
+                    });
+                };
+
+
+                resetMenu();
+
+                forEach(allEffects,function(elemEffect){
+                    if(elemEffect.getAttribute('data-effect') === effect ){
+                        classy.add(elemEffect,'current-demo');
+                    }
+
+                });
+
+            })();
+        </script>
+    </body>
+</html>

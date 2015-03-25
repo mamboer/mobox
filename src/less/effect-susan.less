@@ -1,0 +1,39 @@
+.mobox-effect-susan-rel {
+	position: relative;
+	transition: transform 0.3s 0.1s;
+}
+
+.mobox-effect-susan-open {
+    transition: transform 0.3s;
+	transform: scale3d(0.95, 0.95, 1);
+}
+
+.mobox-effect-susan{
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        opacity: 1;
+        animation-fill-mode: both;
+        animation-timing-function: cubic-bezier(0.7,0,0.3,1);
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-duration: 0.3s;
+        animation-name: anim-susan-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.3s;
+        animation-name: anim-susan-close;
+    }
+}
+
+@keyframes anim-susan-open {
+	0% {  transform: translate3d(0, calc(50vh + 50%), 0); }
+	100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes anim-susan-close {
+	0% { transform: translate3d(0, 0, 0); }
+	100% { transform: translate3d(0, calc(50vh + 50%), 0); }
+}
