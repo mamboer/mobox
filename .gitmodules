@@ -1,0 +1,4 @@
+[submodule "site"]
+	path = site
+	url = git@github.com:mamboer/mobox.git
+	branch = gh-pages
