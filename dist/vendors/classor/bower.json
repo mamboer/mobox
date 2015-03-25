@@ -1,0 +1,23 @@
+{
+  "name": "classy",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mamboer/classy",
+  "authors": ["Levin Van <github.com/mamboer>"],
+  "description": "Classy.JS - A library agnostic, DOM element classes management utility",
+  "main": "dist/classy.js",
+  "keywords": ["Classy.JS","classy","class","css","utility","className"],
+  "license": "MIT",
+  "ignore": [
+    "gulpfile.js",
+    "*.tpl",
+    "src",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "*.swig",
+    "*.json",
+    "site"
+  ]
+}
