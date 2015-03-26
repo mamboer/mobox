@@ -1,0 +1,41 @@
+
+.mobox-effect-kimi-rel {
+	transition: transform 0.3s cubic-bezier(0.6,0,0.4,1) 0.1s;
+}
+
+.mobox-effect-kimi-open {
+	transition: transform 0.4s cubic-bezier(0.6,0,0.4,1);
+	transform: translate3d(-80px,0,0);
+}
+
+.mobox-effect-kimi {
+    .mobox-overlay {
+        transition-duration: 0.4s;
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        opacity: 1;
+        animation-fill-mode: both;
+        animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-duration: 0.4s;
+        animation-name: anim-kimi-open;
+        animation-delay: 0.1s;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.4s;
+        animation-name: anim-kimi-close;
+    }
+}
+@keyframes anim-kimi-open {
+	0% {  transform: ~'translate3d(calc(50vw + 50%), 0, 0)'; }
+	100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes anim-kimi-close {
+	0% {  transform: translate3d(0, 0, 0); }
+	100% { transform: ~'translate3d(calc(50vw + 50%), 0, 0)'; }
+}

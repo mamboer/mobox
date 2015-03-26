@@ -69,18 +69,29 @@
     function Mobox( el, options ) {
 		this.el = el;
 		this.options = extend( {
+            morphDurationOpen: parseInt( el.getAttribute('data-morph-open-duration') || 1500),
+            morphDurationClose: parseInt( el.getAttribute('data-morph-close-duration') || 250),
+            morphOpenDelay:parseInt( el.getAttribute('data-morph-open-delay') || 0),
+            morphCloseDelay:parseInt( el.getAttribute('data-morph-close-delay') || 0),
+            morphOpenData:el.getAttribute('data-morph-open')||null,
+            morphCloseData:el.getAttribute('data-morph-close')||null,
+            morphTag:el.getAttribute('data-morph-tag')||'path',
+            morphOpenEffect:el.getAttribute('data-morph-open-effect') || 'elastic',
+            morphCloseEffect:el.getAttribute('data-morph-close-effect') || 'easeout',
             sticky:false,
-            effect:el.getAttribute('data-effect')||'susan',
-            effectRel:el.getAttribute('data-effect-rel')||'body',
+            effect:el.getAttribute('data-effect')||Mobox.defaults.effect,
+            effectRel:el.getAttribute('data-effect-rel')||Mobox.defaults.effectRel,
         }, this.options );
 		extend( this.options, options );
-		this.ctrlClose = this.el.querySelectorAll( '[data-dialog-close]' );
+		this.ctrlClose = this.el.querySelectorAll( '[data-mobox-close]' );
         this.elemsRel = document.querySelectorAll( this.options.effectRel );
         this.effectClass = 'mobox-effect-' + this.options.effect;
-
+        
         toggleClass(this.elemsRel, this.effectClass+'-rel');        
 
         classy.add(el,this.effectClass );	
+
+        this._initSvg();
 
         this.isOpen = false;
 		this._initEvents();
@@ -91,6 +102,67 @@
 		onOpen : function() { return false; },
 		onClose : function() { return false; }
 	};
+
+    Mobox.prototype._initSvg = function(){
+        var me = this,
+            morphElm = this.el.querySelector('.mobox-morph-shape'),
+            svg = morphElm ? morphElm.querySelector('svg') : null;
+        if(!svg || !morphElm){
+            return;
+        }
+
+        if( typeof Snap === 'undefined' ){
+            alert("Snap.svg not found! SVG Mobox need Snap.svn to function properly!");
+            return;
+        }
+
+        var snap = Snap(svg),
+            morphTag = this.options.morphTag,
+            openMorph = {},
+            closeMorph = {},
+            morphCloseData = closeMorph[morphTag] = this.options.morphCloseData,
+            morphOpenData = openMorph[morphTag] = this.options.morphOpenData;
+
+        this.svg = {
+            
+            morph:{
+                openData:morphOpenData,
+                closeData:morphCloseData,
+                open: openMorph,
+                close:closeMorph,
+                target:snap.select(morphTag)
+            },
+            onOpen:function(inst){
+
+               if( !inst.svg.morph.openData ) return; 
+                // animate
+                var morph = inst.svg.morph;
+                if( inst.options.morphOpenDelay === 0 ){
+                    return morph.target.stop().animate( morph.open, inst.options.morphDurationOpen, mina[inst.options.morphOpenEffect] );
+                }
+                setTimeout(function() {
+                    morph.target.stop().animate( morph.open, inst.options.morphDurationOpen, mina[inst.options.morphOpenEffect] );
+                }, inst.options.morphOpenDelay );
+            },
+            onClose : function( inst ) {
+
+                if( !inst.svg.morph.closeData ) return;
+
+                var morph = inst.svg.morph;
+                if( inst.options.morphCloseDelay === 0 ){
+                    return morph.target.stop().animate( morph.close, inst.options.morphDurationClose, mina[inst.options.morphCloseEffect] );
+                }
+                
+                setTimeout(function() {
+                    morph.target.stop().animate( morph.close, inst.options.morphDurationClose, mina[inst.options.morphCloseEffect] );
+                }, inst.options.morphCloseDelay );
+                
+            }
+        };   
+
+         
+
+    };
 
 	Mobox.prototype._initEvents = function() {
 		var self = this;
@@ -119,8 +191,13 @@
 
         classy.add( this.el, 'mobox-open' );
         toggleClass( this.elemsRel, this.effectClass + '-open' );
-		// callback on open
+		
+        // callback on open
 		this.options.onOpen( this );
+
+        if( this.svg ) {
+            this.svg.onOpen( this ); 
+        }
 
         this.isOpen = true;
 
@@ -141,6 +218,11 @@
         // callback on close
         this.options.onClose( this );
 
+        // svg
+        if( this.svg ) {
+            this.svg.onClose(this);
+        }
+
         this.isOpen = false;
     };
 
@@ -150,6 +232,27 @@
 		}
         return this.show();
     };
+    
+    Mobox.defaults = {
+        effect:'lv',
+        effectRel:'body',
+        svgEffects:['dg','panther','lava','anna']
+    };
+
+    Mobox.isSvgEffect = function( eff ){
+        var items = Mobox.defaults.svgEffects,
+            len = items.length,
+            ret = false;
+
+        for(var i=0; i<len; i++ ){
+            if( eff === items[i] ) {
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    };
+
 	// add to global namespace
 	return Mobox;
 

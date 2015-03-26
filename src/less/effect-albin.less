@@ -1,0 +1,48 @@
+.mobox-effect-albin {
+    .mobox-overlay {
+        transition-duration: 0.4s;
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-albin-open;
+        animation-timing-function: cubic-bezier(0.7,0,0.3,1);
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-albin-close;
+    }
+
+    &.mobox-open .mobox-title,
+    &.mobox-open .mobox-btn-action {
+        animation: anim-albin-elem 0.4s both;
+    }
+
+    &.mobox-open .mobox-title {
+        animation-delay: 0.25s;
+    }
+
+    &.mobox-open .mobox-btn-action {
+        animation-delay: 0.15s;
+    }
+}
+
+@keyframes anim-albin-open {
+	0% { opacity: 0; transform: translate3d(0, -400px, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes anim-albin-close {
+	0% { opacity: 1; transform: translate3d(0, 0, 0); }
+	100% { opacity: 0; transform: translate3d(0, 100px, 0); }
+}
+
+/* Inner elements animations */
+@keyframes anim-albin-elem {
+	0% { opacity: 0; transform: translate3d(0, -100px, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}

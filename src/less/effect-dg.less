@@ -1,0 +1,47 @@
+.mobox-effect-dg {
+    .mobox-overlay {
+        transition-duration: 0.5s;
+    }
+    .mobox-icon-close {
+        display:none;
+    }
+    .mobox-inner {
+        background: transparent;
+    }
+
+    .mobox-morph-shape {
+        position: absolute;
+        width: 125%;
+        height: 100%;
+        top: 0;
+        left: -12.5%;
+        z-index: -1;
+        svg {
+            fill:#fff;
+        }
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.8,0,0.2,1);
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-dg-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-dg-close;
+    }
+}
+@keyframes anim-dg-open {
+	0% { opacity: 0; transform: ~'translate3d(calc(50vw + 50%), 0, 0)'; }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes anim-dg-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; transform: ~'translate3d(calc(-50vw - 50%), 0, 0)'; }
+}

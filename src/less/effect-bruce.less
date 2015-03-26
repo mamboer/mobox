@@ -1,0 +1,46 @@
+.mobox-effect-bruce {
+    .mobox-overlay {
+        transition-duration: 0.3s;
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-bruce-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-bruce-close;
+    }
+
+    &.mobox-open .mobox-title,
+    &.mobox-open .mobox-btn-action {
+        animation: anim-bruce-elem 0.3s both;
+    }
+
+    &.mobox-open .mobox-title {
+        animation-delay: 0.05s;
+    }
+
+    &.mobox-open .mobox-btn-action {
+        animation-delay: 0.1s;
+    }
+}
+@keyframes anim-bruce-open {
+	0% { opacity: 0;  transform: translate3d(0, 50px, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes anim-bruce-close {
+	0% { opacity: 1; transform: translate3d(0, 0, 0); }
+	100% { opacity: 0; transform: translate3d(0, 50px, 0); }
+}
+
+/* Inner elements animations */
+@keyframes anim-bruce-elem {
+	0% { opacity: 0; transform: translate3d(0, 25px, 0); }
+	100% { opacity: 1;transform: translate3d(0, 0, 0); }
+}

@@ -1,0 +1,80 @@
+.mobox-effect-anna {
+
+    .mobox-inner {
+        padding: 0;
+        background: transparent;
+    }
+
+    .mobox-morph-shape {
+        position: absolute;
+        width: ~'calc(100% + 4px)';
+        height: ~'calc(100% + 4px)';
+        top: -2px;
+        left: -2px;
+        z-index: -1;
+        svg rect {
+            stroke: #fff;
+            stroke-width: 2px;
+            stroke-dasharray: 1680;
+        }
+    }
+
+    .mobox-core {
+        opacity: 0;
+        background: #fff;
+    }
+
+ 
+
+    &.mobox-open {
+        .mobox-overlay {
+            transition-duration: 0.8s;
+        }
+        .mobox-inner{
+            opacity:1;
+        }
+        .mobox-morph-shape svg rect {
+            animation: anim-anna-dash 0.6s forwards;
+        }
+        .mobox-core {
+            padding: 4em;
+            opacity: 1;
+            transition: opacity 0.85s 0.35s;
+        }
+
+        .mobox-title {
+            animation: anim-anna-elem-title 0.7s ease-out both;
+        }
+
+        .mobox-btn-action {
+            animation: anim-anna-elem-btn-action 0.7s ease-out both;
+        }
+    }
+
+    &.mobox-close {
+        .mobox-overlay {
+            transition-duration: 0.5s;
+        }
+    }
+   
+
+}
+
+@keyframes anim-anna-dash {
+	0% {
+		stroke-dashoffset: 1680;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+/* Inner elements animations */
+@keyframes anim-anna-elem-title {
+	0% { opacity: 0; transform: translate3d(-150px, 0, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes anim-anna-elem-btn-action {
+	0% { opacity: 0; transform: translate3d(150px, 0, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}

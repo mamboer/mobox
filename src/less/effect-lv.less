@@ -1,14 +1,14 @@
-.mobox-effect-susan-rel {
+.mobox-effect-lv-rel {
 	position: relative;
 	transition: transform 0.3s 0.1s;
 }
 
-.mobox-effect-susan-open {
+.mobox-effect-lv-open {
     transition: transform 0.3s;
 	transform: scale3d(0.95, 0.95, 1);
 }
 
-.mobox-effect-susan{
+.mobox-effect-lv{
 
     &.mobox-open .mobox-inner,
     &.mobox-close .mobox-inner {
@@ -19,21 +19,21 @@
 
     &.mobox-open .mobox-inner {
         animation-duration: 0.3s;
-        animation-name: anim-susan-open;
+        animation-name: anim-lv-open;
     }
 
     &.mobox-close .mobox-inner {
         animation-duration: 0.3s;
-        animation-name: anim-susan-close;
+        animation-name: anim-lv-close;
     }
 }
 
-@keyframes anim-susan-open {
-	0% {  transform: translate3d(0, calc(50vh + 50%), 0); }
+@keyframes anim-lv-open {
+	0% {  transform: ~'translate3d(0, calc(50vh + 50%), 0)'; }
 	100% { transform: translate3d(0, 0, 0); }
 }
 
-@keyframes anim-susan-close {
+@keyframes anim-lv-close {
 	0% { transform: translate3d(0, 0, 0); }
-	100% { transform: translate3d(0, calc(50vh + 50%), 0); }
+	100% { transform: ~'translate3d(0, calc(50vh + 50%), 0)'; }
 }

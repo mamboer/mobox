@@ -1,0 +1,47 @@
+.mobox-effect-lava {
+    .mobox-overlay {
+        transition-duration: 0.5s;
+    }
+    .mobox-icon-close {
+        display:none;
+    }
+    .mobox-inner {
+        background: transparent;
+    }
+
+    .mobox-morph-shape {
+        position: absolute;
+        width: 100%;
+        height: 125%;
+        top: -12.5%;
+        left: 0;
+        z-index: -1;
+        svg {
+            fill:#fff;
+        }
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.8,0,0.2,1);
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-lava-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-lava-close;
+    }
+}
+@keyframes anim-lava-open {
+	0% { opacity: 0; transform: ~'translate3d(0, calc(-50vh - 50%), 0) scale3d(0.3, 0.3, 1)'; }
+	100% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+@keyframes anim-lava-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; transform: ~'translate3d(0, calc(50vh + 50%), 0)'; }
+}

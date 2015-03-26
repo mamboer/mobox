@@ -8,7 +8,8 @@
   "keywords": ["Dialog","Modal","Popbox","Overlay","Dialog Effects","mobox","css3","animation"],
   "license": "MIT",
   "dependencies":{
-      "classor":"~1.0.0"    
+    "classor":"~1.0.0",
+    "Snap.svg":"*"    
   },
   "ignore": [
     "gulpfile.js",

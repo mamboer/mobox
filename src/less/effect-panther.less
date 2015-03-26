@@ -1,0 +1,65 @@
+.mobox-effect-panther {
+    .mobox-overlay {
+        transition-duration: 0.4s;
+    }
+
+    .mobox-inner {
+        background: transparent;
+    }
+
+    .mobox-core {
+        opacity: 0;
+        transform: scale3d(0.7, 0.5, 1);
+        transition: opacity 0.3s, transform 0.3s;
+    }
+    .mobox-morph-shape {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        svg{
+            fill:#fff;
+        }
+    }
+    &.mobox-open {
+        .mobox-core {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+            transition: opacity 0.3s, transform 0.3s;
+            transition-delay: 0.2s;
+        }
+
+
+        .mobox-inner {
+            animation-duration: 0.4s;
+            animation-name: anim-panther-open;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+        }
+
+    }
+
+    &.mobox-close {
+
+        .mobox-inner {
+            animation-name: anim-panther-close;
+            animation-duration: 0.4s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+        }
+
+    }
+
+}
+
+@keyframes anim-panther-open {
+	0% { opacity: 0; transform: scale3d(0.6, 0.6, 1); }
+	100% { opacity: 1; transform: scale3d(1, 1, 1) }
+}
+
+@keyframes anim-panther-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; transform: scale3d(0.6, 0.6, 1); }
+}

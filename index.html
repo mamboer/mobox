@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,8 +13,7 @@
         <!-- common styles -->
         <link rel="stylesheet" type="text/css" href="dist/css/mobox.css" />
         <!-- individual effect -->
-        <link rel="stylesheet" type="text/css" href="dist/css/effect-susan.css" />
-        <link rel="stylesheet" type="text/css" href="dist/css/effect-sandra.css" />
+        <link rel="stylesheet" type="text/css" href="dist/css/effects.css" />
         <script src="dist/vendors/modernizr/modernizr.custom.js"></script>
     </head>
     <body>
@@ -22,74 +21,181 @@
             <div class="content">
                 <header class="codrops-header">
                     <h1><span class="logo">{{name}}.js</span> <span>A collection of</span> Creative Dialog Effects</h1>
-                    <div class="button-wrap"><button data-dialog="somedialog" class="trigger">Open Dialog</button></div>
+                    <div class="button-wrap"><button class="trigger">Open Mobox</button></div>
                 </header>
                 <nav id="menu" class="menu">
                     <div>
                         <h2>Simple</h2>
                         <ul>
-                            <li><a href="?sandra" data-effect="sandra">Sandra</a></li>
-                            <li><a href="javascript:;">Sally</a></li>
+                            <li><a href="?shine" data-effect="shine">Shine</a></li>
+                            <li><a href="?piggy" data-effect="piggy">Piggy</a></li>
                         </ul>
                         <h2>Body</h2>
                         <ul>
-                            <li><a href="javascript:;">Dean</a></li>
-                            <li><a data-effect="susan" href="?susan" class="current-demo">Susan</a></li>
+                            <li><a data-effect="kimi" href="?kimi">Kimi</a></li>
+                            <li><a data-effect="lv" href="?lv" class="current-demo">LV</a></li>
                         </ul>
                     </div>
                     <div>
                         <h2>Move/Slide</h2>
                         <ul>
-                            <li><a href="javascript:;">Cathy</a></li>
-                            <li><a href="javascript:;">Annie</a></li>
-                            <li><a href="javascript:;">Val</a></li>
-                            <li><a href="javascript:;">Ricky</a></li>
-                            <li><a href="javascript:;">Donna</a></li>
+                            <li><a data-effect="albin" href="?albin">Albin</a></li>
+                            <li><a data-effect="bruce" href="?bruce">Bruce</a></li>
+                            <li><a href="?jose" data-effect="jose">Jose</a></li>
+                            <li><a href="?aiden" data-effect="aiden">Aiden</a></li>
                         </ul>
                     </div>
                     <div>
                         <h2>Sticky</h2>
                         <ul>
-                            <li><a href="javascript:;">Ken</a></li>
-                            <li><a href="javascript:;">Alex</a></li>
+                            <li><a href="?xmagic" data-effect="xmagic">XMagic</a></li>
+                            <li><a href="?alex" data-effect="alex">Alex</a></li>
                         </ul>
                         <h2>Jelly</h2>
                         <ul>
-                            <li><a href="javascript:;">Don</a></li>
+                            <li><a href="?nornor" data-effect="nornor">NORNOR</a></li>
                         </ul>
                     </div>
                     <div>
                         <h2>SVG</h2>
                         <ul>
-                            <li><a href="javascript:;">Laura</a></li>
-                            <li><a href="javascript:;">Jamie</a></li>
-                            <li><a href="javascript:;">Henry</a></li>
-                            <li><a href="javascript:;">Jim</a></li>
-                            <li><a href="javascript:;">Wilma</a></li>
+                            <li><a href="?dg" data-effect="dg">DG</a></li>
+                            <li><a href="?panther" data-effect="panther">Panther</a></li>
+                            <li><a href="?lava" data-effect="lava">Lava</a></li>
+                            <li><a href="?anna" data-effect="anna">Anna</a></li>
                         </ul>
                     </div>
                 </nav>
             </div><!-- /content -->
         </div><!-- /container -->
-        <div id="somedialog" class="mobox" data-effect="susan" data-effect-rel=".container">
+        <div id="notSvgMobox" class="mobox" data-effect="lv" data-effect-rel=".container">
             <div class="mobox-overlay"></div>
             <div class="mobox-inner">
-                <span type="button" class="mobox-icon-close" data-dialog-close></span>
+                <span class="mobox-icon-close" data-mobox-close></span>
                 <h2 class="mobox-title"><strong>Howdy</strong>, I'm a dialog box</h2>
                 <div class="mobox-cont"></div>
-                <div class="mobox-actions"><button class="action" data-dialog-close>Close</button></div>
+                <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
             </div>
         </div>
+
+        <!-- SVG Effects -->
+
+        <div id="svgMobox-dg" 
+            data-morph-open-delay="250",
+            data-morph-open="M33,0h41c0,0,0,9.871,0,29.871C74,49.871,74,60,74,60H32.666h-0.125H6c0,0,0-10,0-30S6,0,6,0H33" 
+            data-morph-close="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"
+            class="mobox">
+
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span class="mobox-icon-close" data-mobox-close></span>
+                <div class="mobox-morph-shape"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <path d="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"></path>
+                    </svg>
+                </div>
+                <div class="mobox-core">
+                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <div class="mobox-cont"></div>
+                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                </div>   
+            </div>
+
+        </div>
+
+        <div id="svgMobox-lava" 
+            data-morph-open-duration="1500"
+            data-morph-open-delay="150"
+            data-morph-open="M0,33.699V0c0,0,13.458,0,40.125,0C66.793,0,80,0,80,0v33.974v0.103V60c0,0-13.333,0-40,0c-26.667,0-40,0-40,0V33.699" 
+            data-morph-close="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"
+            class="mobox">
+
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span class="mobox-icon-close" data-mobox-close></span>
+                <div class="mobox-morph-shape"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <path d="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"></path>
+                    </svg>
+                </div>                
+                <div class="mobox-core">
+                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <div class="mobox-cont"></div>
+                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                </div>   
+            </div>
+
+        </div>
+
+        <div id="svgMobox-panther" 
+            data-morph-open-duration="400"
+            data-morph-close-duration="400"
+            data-morph-open-effect="easeinout"
+            data-morph-close-effect="easeinout"
+            data-morph-open="M0,0h80c0,0,0,9.977,0,29.834c0,19.945,0,30.249,0,30.249H0c0,0,0-10.055,0-30.332C0,8.219,0,0,0,0z" 
+            data-morph-close="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"
+            class="mobox">
+
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span class="mobox-icon-close" data-mobox-close></span>
+                <div class="mobox-morph-shape"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <path d="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"></path>
+                    </svg>
+                </div>               
+                <div class="mobox-core">
+                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <div class="mobox-cont"></div>
+                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                </div>   
+            </div>
+
+        </div>
+
+        <div id="svgMobox-anna" class="mobox">
+
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span class="mobox-icon-close" data-mobox-close></span>
+                <div class="mobox-morph-shape">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 560 280" preserveAspectRatio="none">
+                        <rect x="3" y="3" fill="none" width="556" height="276"/>
+                    </svg>
+                </div> 
+                <div class="mobox-core">
+                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <div class="mobox-cont"></div>
+                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                </div>   
+            </div>
+
+        </div>
+        <!--/ SVG Effects -->
+        <script src="dist/vendors/Snap.svg/dist/snap.svg-min.js"></script>
         <script src="dist/vendors/classor/dist/classy.js"></script>
         <script src="dist/js/mobox.js"></script>
         <script>
             (function() {
 
-                var effect = location.search.replace('?','')||'susan',
+                // get mobox instance according to the selected effect
+                var getMobox = function(eff){
+                    var opts = {
+                        sticky:true,
+                        effect:eff
+                    };
+
+                    var domElm = document.getElementById( Mobox.isSvgEffect(eff) ? ('svgMobox-'+eff) : 'notSvgMobox' );                    
+ 
+                    return new Mobox( domElm, opts );
+
+                };
+
+
+                var effect = location.search.replace('?','')||'lv',
                     container = document.getElementById( 'container' ),
-                    dlgtrigger = document.querySelector( '[data-dialog]' ),
-                    somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
-                    dlg = new Mobox(somedialog,{sticky:true,effect:effect}),
+                    dlgtrigger = document.querySelector( '.trigger' ),
+                    dlg = getMobox( effect ),
                     allEffects = document.getElementById('menu').querySelectorAll('[data-effect]');
     
                 dlgtrigger.addEventListener( 'click', dlg.show.bind(dlg) );

@@ -1,0 +1,48 @@
+.mobox-effect-alex {
+  	align-items: flex-end;
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        opacity: 1;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+        transform-origin: 50% 100%;
+        animation-timing-function: ease-in-out;
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-alex-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-alex-close;
+    }
+
+    &.mobox-open .mobox-title,
+    &.mobox-open .mobox-btn-action {
+        animation: anim-alex-elem 0.3s both;
+    }
+
+    &.mobox-open .mobox-title {
+        animation-delay: 0.15s;
+    }
+
+    &.mobox-open .mobox-btn-action {
+        animation-delay: 0.2s;
+    }
+}
+
+@keyframes anim-alex-open {
+	0% { transform: perspective(1000px) rotate3d(1,0,0,90deg); }
+	100% { transform: perspective(1000px) rotate3d(1,0,0,0deg); }
+}
+
+@keyframes anim-alex-close {
+	0% {  transform: perspective(1000px) rotate3d(1,0,0,0deg); }
+	100% { transform: perspective(1000px) rotate3d(1,0,0,90deg); }
+}
+
+/* Inner elements animations */
+@keyframes anim-alex-elem {
+	0% { opacity: 0;  transform: translate3d(0, 100px, 0); }
+	100% { opacity: 1;  transform: translate3d(0, 0, 0); }
+}

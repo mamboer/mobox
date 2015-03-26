@@ -1,0 +1,46 @@
+.mobox-effect-xmagic {
+    align-items: flex-start;
+    .mobox-icon-close{display:none;}
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        opacity: 1;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-xmagic-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-xmagic-close;
+    }
+
+    &.mobox-open .mobox-title,
+    &.mobox-open .mobox-btn-action {
+        animation: anim-xmagic-elem 0.3s both;
+    }
+
+    &.mobox-open .mobox-title {
+        animation-delay: 0.15s;
+    }
+
+    &.mobox-open .mobox-btn-action {
+        animation-delay: 0.05s;
+    }
+}
+@keyframes anim-xmagic-open {
+	0% { transform: translate3d(0, -100%, 0); }
+	100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes anim-xmagic-close {
+	0% { transform: translate3d(0, 0, 0); }
+	100% { transform: translate3d(0, -100%, 0); }
+}
+
+/* Inner elements animations */
+@keyframes anim-xmagic-elem {
+	0% { opacity: 0; transform: translate3d(0, -100px, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}

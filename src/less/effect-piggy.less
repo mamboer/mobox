@@ -1,0 +1,30 @@
+.mobox-effect-piggy{
+    .mobox-overlay {
+        transition-duration: 0.4s;
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-piggy-open;
+        animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-piggy-close;
+    }
+}
+
+@keyframes anim-piggy-open {
+	0% { opacity: 0; transform: scale3d(0, 0, 1); }
+	100% { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+@keyframes anim-piggy-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; transform: scale3d(0.5, 0.5, 1); }
+}

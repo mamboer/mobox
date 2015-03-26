@@ -1,0 +1,53 @@
+.mobox-effect-aiden {
+    .mobox-overlay {
+        transition-duration: 0.4s;
+    }
+
+    &.mobox-open .mobox-inner,
+    &.mobox-close .mobox-inner {
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.7,0,0.3,1);
+    }
+
+    &.mobox-open .mobox-inner {
+        animation-name: anim-aiden-open;
+    }
+
+    &.mobox-close .mobox-inner {
+        animation-name: anim-aiden-close;
+    }
+
+    &.mobox-open .mobox-title,
+    &.mobox-open .mobox-btn-action {
+        animation: anim-aiden-elem-open 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    }
+
+    &.mobox-close .mobox-title,
+    &.mobox-close .mobox-btn-action {
+        animation: anim-aiden-elem-close 0.4s cubic-bezier(0.7,0,0.3,1) both;
+    }
+}
+@keyframes anim-aiden-open {
+	0% { opacity: 0; transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+}
+
+@keyframes anim-aiden-close {
+	0% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+	20% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
+	100% { opacity: 0; transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1); }
+}
+
+/* Inner elements animations */
+
+@keyframes anim-aiden-elem-open {
+	0% { opacity: 0; transform: translate3d(-100px, 0, 0); }
+	20% { opacity: 0;  transform: translate3d(-100px, 0, 0); }
+	100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes anim-aiden-elem-close {
+	0% { opacity: 1; transform: translate3d(0, 0, 0); }
+	100% { opacity: 0; transform: translate3d(-100px, 0, 0); }
+}
