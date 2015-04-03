@@ -181,7 +181,7 @@
 
     Mobox.prototype.showScene = function(sceneName,data){
         data = data || {};
-        var me = this,targetScene,tempElem;
+        var me = this,targetScene,tempElem, tempElemData;
         sceneName = this.options.clScene + '-'+ (sceneName || 'default');
         forEach(this.scenes,function(scene){
             classy.remove(scene,me.options.clSceneActive);
@@ -195,7 +195,16 @@
         //prepare scene data
         for(var d in data){
             tempElem = targetScene.querySelector('.mobox-'+d) || targetScene.querySelector('[data-'+d+']');
+            tempElemData = data[d];
             if(!tempElem) continue;
+            //attributes data
+            if( typeof(tempElemData) === 'object' && tempElemData.attrs ){
+                for(var d1 in tempElemData.attrs){
+                    tempElem.setAttribute( d1, tempElemData.attrs[d1] );    
+                }
+                continue;
+            }
+            //normal data
             if(typeof(tempElem.value) !== 'undefined'){
                 tempElem.value = data[d];    
             }else if( typeof(tempElem.innerHTML) !== 'undefined'){

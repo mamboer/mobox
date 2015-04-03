@@ -105,6 +105,46 @@
                     </div>
                     <div class="mobox-scene mobox-scene-spin">
                         <h2 class="mobox-title">I'm Loading, please wait!</h2>
+                        <div class="mobox-actions">
+                            <button class="mobox-btn-action" data-mobox-close>Close</button>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+
+        </div>
+
+        <div id="svgMobox-lava" 
+            data-morph-open-duration="1500"
+            data-morph-open-delay="150"
+            data-morph-open="M0,33.699V0c0,0,13.458,0,40.125,0C66.793,0,80,0,80,0v33.974v0.103V60c0,0-13.333,0-40,0c-26.667,0-40,0-40,0V33.699" 
+            data-morph-close="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"
+            class="mobox">
+
+            <div class="mobox-overlay"></div>
+            <div class="mobox-inner">
+                <span class="mobox-icon-close" data-mobox-close></span>
+                <div class="mobox-morph-shape"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                        <path d="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"></path>
+                    </svg>
+                </div>                
+                <div class="mobox-core">
+                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <div class="mobox-cont"></div>
+                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                </div>   
+            </div>
+
+        </div>
+
+        <div id="svgMobox-panther" 
+            data-morph-open-duration="400"
+            data-morph-close-duration="400"
+            data-morph-open-effect="easeinout"
+            data-morph-close-effect="easeinout"
+            data-morph-open="M0,0h80c0,0,0,9.977,0,29.834c0,19.945,0,30.249,0,30.249H0c0,0,0-10.055,0-30.332C0,8.219,0,0,0,0z" 
+            data-morph-close="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"
                     </div>
                 </div>   
             </div>
@@ -202,7 +242,14 @@
                                 }
                             },
                             actionScene:function(obj){
-                                this.showScene('spin',{title:'I AM A TITLE, I AM LOADING...'});
+                                this.showScene('spin',{
+                                    'btn-action':{
+                                        'attrs':{
+                                            'title':'Do not close me!!!'
+                                        }
+                                    }, 
+                                    title:'I AM A TITLE, I AM LOADING...'
+                                });
                             }
                         }
                     };
