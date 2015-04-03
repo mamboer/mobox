@@ -1,12 +1,12 @@
 /*!
- * mobox 1.0.0
+ * mobox 1.0.1
  * MOBOX = Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
  * @dependencies 
  *  1. classy.js <http://faso.me/classy>
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1427361447557 
+ * built at 1428051640433 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -79,6 +79,12 @@
             morphOpenEffect:el.getAttribute('data-morph-open-effect') || 'elastic',
             morphCloseEffect:el.getAttribute('data-morph-close-effect') || 'easeout',
             sticky:false,
+            actions:{
+                btnIdXXX:function(obj){
+                    //this reference to the Mobox instance
+                    //obj.el contains the action elements
+                }    
+            },
             effect:el.getAttribute('data-effect')||Mobox.defaults.effect,
             effectRel:el.getAttribute('data-effect-rel')||Mobox.defaults.effectRel,
         }, this.options );
@@ -183,6 +189,30 @@
         if( !this.options.sticky ){
 		    this.el.querySelector( '.mobox-overlay' ).addEventListener( 'click', this.hide.bind(this) );
 	    }
+
+        //element actions
+        for(var actionKey in this.options.actions){
+            var elem = document.getElementById(actionKey),
+                action = this.options.actions[actionKey],
+                actionFun = action.evtName ? action.func:action;
+                evtName = action.evtName || 'click';
+            if(!elem) continue;
+
+            (function(obj){
+                obj.el.addEventListener(obj.evtName,function(evt){
+                
+                    obj.action.call(self,obj);
+
+                });    
+            })({
+                el:elem,
+                evtName:evtName,
+                actionKey:actionKey,
+                action:actionFun
+            });
+            
+            
+        }
     };
 
     Mobox.prototype.show = function(){
