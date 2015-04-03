@@ -88,7 +88,20 @@
 	z-index: 5;
 	opacity: 0;
 }
-
+.mobox-core {
+    position:relative;
+}
+.mobox-scene {
+    opacity:0;
+    transform:scale(0);
+    height:0px;
+    transition:all .2s ease-out;
+}
+.mobox-scene-active {
+    opacity:1;  
+    transform:scale(1);
+    height:auto;
+}
 .mobox-open .mobox-inner {
 	pointer-events: auto;
 }

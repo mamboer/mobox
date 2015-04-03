@@ -79,6 +79,8 @@
             morphOpenEffect:el.getAttribute('data-morph-open-effect') || 'elastic',
             morphCloseEffect:el.getAttribute('data-morph-close-effect') || 'easeout',
             sticky:false,
+            clScene:'mobox-scene',
+            clSceneActive:'mobox-scene-active',
             actions:{
                 btnIdXXX:function(obj){
                     //this reference to the Mobox instance
@@ -101,6 +103,7 @@
 
         this.isOpen = false;
 		this._initEvents();
+        this._initScenes();
 	}
 
 	Mobox.prototype.options = {
@@ -167,6 +170,28 @@
         };   
 
          
+
+    };
+
+    Mobox.prototype._initScenes = function(){
+    
+        this.scenes = this.el.querySelectorAll('.'+this.options.clScene);
+        
+    };
+
+    Mobox.prototype.showScene = function(sceneName){
+        var me = this,targetScene;
+        sceneName = this.options.clScene + '-'+ (sceneName || 'default');
+        forEach(this.scenes,function(scene){
+            classy.remove(scene,me.options.clSceneActive);
+            if( classy.has(scene,sceneName) && !targetScene ){
+                targetScene = scene;    
+            }
+        });
+
+        if(!targetScene) return;
+
+        classy.add(targetScene,me.options.clSceneActive);
 
     };
 
