@@ -164,9 +164,9 @@
                     </svg>
                 </div> 
                 <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <h2 class="mobox-title" id="actionB"><strong>Howdy</strong>, I'm a svn mobox</h2>
                     <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                    <div class="mobox-actions"><button id="actionA" class="mobox-btn-action" data-mobox-close>Close</button></div>
                 </div>   
             </div>
 
@@ -182,7 +182,18 @@
                 var getMobox = function(eff){
                     var opts = {
                         sticky:true,
-                        effect:eff
+                        effect:eff,
+                        actions:{
+                            actionA:function(obj){
+                                alert(obj.el.id+' was clicked!!!');
+                            },
+                            actionB:{
+                                evtName:'mouseover',
+                                func:function(obj){
+                                    alert(obj.actionKey + ' was '+obj.evtName);
+                                }
+                            }
+                        }
                     };
 
                     var domElm = document.getElementById( Mobox.isSvgEffect(eff) ? ('svgMobox-'+eff) : 'notSvgMobox' );                    
