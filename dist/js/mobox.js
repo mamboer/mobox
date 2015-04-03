@@ -1,12 +1,12 @@
 /*!
- * mobox 1.0.1
+ * mobox 1.0.2
  * MOBOX = Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
  * @dependencies 
  *  1. classy.js <http://faso.me/classy>
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1428056118667 
+ * built at 1428073688918 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -179,8 +179,9 @@
         
     };
 
-    Mobox.prototype.showScene = function(sceneName){
-        var me = this,targetScene;
+    Mobox.prototype.showScene = function(sceneName,data){
+        data = data || {};
+        var me = this,targetScene,tempElem;
         sceneName = this.options.clScene + '-'+ (sceneName || 'default');
         forEach(this.scenes,function(scene){
             classy.remove(scene,me.options.clSceneActive);
@@ -190,6 +191,17 @@
         });
 
         if(!targetScene) return;
+
+        //prepare scene data
+        for(var d in data){
+            tempElem = targetScene.querySelector('.mobox-'+d) || targetScene.querySelector('[data-'+d+']');
+            if(!tempElem) continue;
+            if(typeof(tempElem.value) !== 'undefined'){
+                tempElem.value = data[d];    
+            }else if( typeof(tempElem.innerHTML) !== 'undefined'){
+                tempElem.innerHTML = data[d];    
+            }
+        }
 
         classy.add(targetScene,me.options.clSceneActive);
 

@@ -179,8 +179,9 @@
         
     };
 
-    Mobox.prototype.showScene = function(sceneName){
-        var me = this,targetScene;
+    Mobox.prototype.showScene = function(sceneName,data){
+        data = data || {};
+        var me = this,targetScene,tempElem;
         sceneName = this.options.clScene + '-'+ (sceneName || 'default');
         forEach(this.scenes,function(scene){
             classy.remove(scene,me.options.clSceneActive);
@@ -190,6 +191,17 @@
         });
 
         if(!targetScene) return;
+
+        //prepare scene data
+        for(var d in data){
+            tempElem = targetScene.querySelector('.mobox-'+d) || targetScene.querySelector('[data-'+d+']');
+            if(!tempElem) continue;
+            if(typeof(tempElem.value) !== 'undefined'){
+                tempElem.value = data[d];    
+            }else if( typeof(tempElem.innerHTML) !== 'undefined'){
+                tempElem.innerHTML = data[d];    
+            }
+        }
 
         classy.add(targetScene,me.options.clSceneActive);
 
