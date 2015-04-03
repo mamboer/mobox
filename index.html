@@ -95,9 +95,17 @@
                     </svg>
                 </div>
                 <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                    <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
+                    <div class="mobox-scene mobox-scene-default mobox-scene-active">
+                        <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                        <div class="mobox-cont"></div>
+                        <div class="mobox-actions">
+                            <button class="mobox-btn-action mobox-btn-gray" data-mobox-close>Close</button>
+                            <button class="mobox-btn-action" id="actionScene">Show Loading Scene</button>
+                        </div>
+                    </div>
+                    <div class="mobox-scene mobox-scene-spin">
+                        <h2 class="mobox-title">I'm Loading, please wait!</h2>
+                    </div>
                 </div>   
             </div>
 
@@ -192,6 +200,9 @@
                                 func:function(obj){
                                     alert(obj.actionKey + ' was '+obj.evtName);
                                 }
+                            },
+                            actionScene:function(obj){
+                                this.showScene('spin');
                             }
                         }
                     };
