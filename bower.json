@@ -18,6 +18,8 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "dist/vendors/classor",
+    "dist/vendors/Snap.svg",
     "test",
     "tests",
     "*.json",
