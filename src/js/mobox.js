@@ -22,7 +22,8 @@
 }(this, function (classy) {
 
 	var support = { animations : Modernizr.cssanimations },
-		animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+		ids = 1,
+        animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
 		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
 		onEndAnimation = function( el, callback ) {
 			var onEndCallbackFn = function( ev ) {
@@ -54,6 +55,9 @@
         }
     }
 
+    function validDom(dom, tagName){
+        return (dom && dom.tagName && dom.nodeName && dom.nodeType === 1 && ( !tagName ? true: (tagName === dom.tagName) ) );    
+    }
 
 	/**
 	 * extend obj function
@@ -104,12 +108,31 @@
         this.isOpen = false;
 		this._initEvents();
         this._initScenes();
-	}
+	};
+
+    Mobox.prototype.destroy = function(){
+        this.el.parentNode.removeChild(this.el);
+    };
 
 	Mobox.prototype.options = {
 		// callbacks
+        destroyAfterClosed:false,
+        /**
+         * callback for opening
+         */
 		onOpen : function() { return false; },
-		onClose : function() { return false; }
+        /**
+         * callback after being opened while the animation has been finished
+         */
+        onOpened: function() { return false; },
+        /**
+         * callback for closing
+         */
+		onClose : function() { return false; },
+        /**
+         * callback after being closed while the animation has been finished
+         */
+        onClosed: function() { return false;}
 	};
 
     Mobox.prototype._initSvg = function(){
@@ -267,7 +290,12 @@
 
         classy.add( this.el, 'mobox-open' );
         toggleClass( this.elemsRel, this.effectClass + '-open' );
-		
+	
+        
+        onEndAnimation( this.el.querySelector( '.mobox-inner' ), function() {
+            self.options.onOpened(self);
+        } );
+
         // callback on open
 		this.options.onOpen( this );
 
@@ -289,6 +317,7 @@
         
         onEndAnimation( this.el.querySelector( '.mobox-inner' ), function() {
             classy.remove( self.el, 'mobox-close' );
+            self.options.onClosed( self );
         } );
 
         // callback on close
@@ -328,6 +357,33 @@
         }
         return ret;
     };
+
+    /**
+     * show a specified mobox
+     * @param {object} opts options, like {'tpl':'template id or template dom element', 'dom':'dom id or dom element object'}
+     * @return {Mobox} the mobox instance
+     */
+    Mobox.show = function(opts){
+        opts = opts || {};
+        var dom = opts.dom,
+            tpl = opts.tpl;
+        //a valid dom element was passed in
+        if( validDom( dom ) ){
+            delete opts.dom;
+            return ( new Mobox(dom,opts) );
+        } 
+
+        //a dom id was passed in
+        if( typeof(dom)==='string' && ( dom = document.getElementById( dom ) )){
+            delete opts.dom;
+            return ( new Mobox(dom,opts) );
+        }
+
+        // a tempate script dom element was passed in
+        if( validDom( tpl,'SCRIPT' ) ){
+                        
+        }
+    };    
 
 	// add to global namespace
 	return Mobox;
