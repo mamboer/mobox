@@ -328,7 +328,7 @@
 
         //element actions
         for(var actionKey in this.options.actions){
-            var elem = document.getElementById(actionKey) || this.el.querySelector(actionKey) || this.el.querySelector('[data-action-'+ actionKey +']'),
+            var elem = document.getElementById(actionKey) || this.el.querySelector(actionKey) || this.el.querySelector('[data-mobox-'+ actionKey +']'),
                 action = this.options.actions[actionKey],
                 actionFun = action.evtName ? action.func:action;
                 evtName = action.evtName || 'click';
