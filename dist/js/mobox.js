@@ -6,7 +6,7 @@
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1428484355281 
+ * built at 1428484914501 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -328,7 +328,7 @@
 
         //element actions
         for(var actionKey in this.options.actions){
-            var elem = document.getElementById(actionKey) || this.el.querySelector(actionKey) || this.el.querySelector('[data-action-'+ actionKey +']'),
+            var elem = document.getElementById(actionKey) || this.el.querySelector(actionKey) || this.el.querySelector('[data-mobox-'+ actionKey +']'),
                 action = this.options.actions[actionKey],
                 actionFun = action.evtName ? action.func:action;
                 evtName = action.evtName || 'click';
