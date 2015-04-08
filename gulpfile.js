@@ -102,7 +102,7 @@ gulp.task('swig',function(){
         .pipe(rename('bower.json'))
         .pipe(gulp.dest(__dirname));
     
-    gulp.src('index.html')
+    gulp.src(['*.html'])
         .pipe(swig(swigOpts))
         .pipe(gulp.dest('site'));
 

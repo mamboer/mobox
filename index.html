@@ -1,298 +1,449 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{{name}}.js | Creative Dialog Effects</title>
-        <meta name="description" content="{{description}}" />
-        <meta name="keywords" content="{{keywords|join(',')}}" />
-        <meta name="author" content="{{author|raw}}" />
-        <link rel="stylesheet" type="text/css" href="dist/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="dist/css/demo.css" />
-        <!-- common styles -->
-        <link rel="stylesheet" type="text/css" href="dist/css/mobox.css" />
-        <!-- individual effect -->
-        <link rel="stylesheet" type="text/css" href="dist/css/effects.css" />
-        <script src="dist/vendors/modernizr/modernizr.custom.js"></script>
-    </head>
-    <body>
-        <div id="container" class="container">
-            <div class="content">
-                <header class="codrops-header">
-                    <h1><span class="logo">{{name}}.js</span> <span>A collection of</span> Creative Dialog Effects</h1>
-                    <div class="button-wrap"><button class="trigger">Open Mobox</button></div>
-                </header>
-                <nav id="menu" class="menu">
-                    <div>
-                        <h2>Simple</h2>
+
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="keywords" content="{{keywords|join(',')}}"/>
+    <meta name="description" content="{{description}}"/>
+    <meta name="author" content="{{author|raw}}"/>
+    <!-- Site Properities -->
+    <title>{{name}} - {{description}}</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Semantic-Org/Semantic-UI/master/dist/semantic.min.css"/>
+    <style>
+        .site-header-column {padding: 5em 0 !important;}
+        .site-header-column h1 {font-size: 5em;margin-bottom: 0 !important;}
+        .site-header-column p {margin: 0.5em 0em 1em 0em !important;}
+        pre {border-radius: 0.3em;padding: 1.5em !important;}
+        code {font-family: monospace !important;font-weight: 700;}
+        .demo-header h1 {font-size: 3em;}
+        .demo-inner {min-width: 100%;}
+        .demo-outer {min-height: 100%;}
+        .addthis_sharing_toolbox {display: inline-block;position: relative;top: -2px;}
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="https://cdn.rawgit.com/Semantic-Org/Semantic-UI/master/dist/semantic.min.js"></script>
+
+    <!--Mobox dependencies-->
+    <link rel="stylesheet" href="dist/css/mobox.css"/>
+    <link rel="stylesheet" href="dist/css/effect-dg.css"/>
+    <script src="dist/vendors/classor/dist/classy.min.js"></script>
+    <script src="dist/vendors/modernizr/modernizr.custom.js"></script>
+
+    <!--Mobox optional dependencies-->
+    <script src="dist/vendors/Snap.svg/dist/snap.svg-min.js"></script>
+
+    <!--Mobox-->
+    <script src="dist/js/mobox.js"></script>
+</head>
+
+<body id="home">
+    <div class="ui inverted black vertical segment">
+        <div class="ui page grid">
+            <div class="column center aligned site-header-column">
+                <h1>{{name|capitalize}}.UI</h1>
+                <span class="ui mini label" id="version">v{{version}}</span>
+                <p class="ui medium inverted header" id="description"></p>
+                <a class="ui inverted blue huge button" href="https://github.com/mamboer/{{name}}/archive/master.zip">Download</a>
+                <a class="ui inverted pink huge button" href="demo.html?lv" style="margin-left:10px;">Demos</a>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical segment">
+        <div class="ui page grid">
+            <div class="column center aligned">
+                <div class="addthis_sharing_toolbox"></div>
+                <a href="https://github.com/mamboer" class="github-button">Follow {{author|raw}}</a>
+                <a data-count-api="/repos/mamboer/{{name}}#stargazers_count" data-count-href="/mamboer/{{name}}/stargazers" href="https://github.com/mamboer/{{name}}" class="github-button">Star</a>
+                <a data-count-api="/repos/mamboer/{{name}}#forks_count" data-count-href="/mamboer/{{name}}/network" href="https://github.com/mamboer/{{name}}/fork" class="github-button">Fork</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical segment">
+        <div class="ui page grid">
+            <div class="column">
+                <h1>Installation</h1>
+
+                <h3>Manually</h3>
+                <ol>
+                    <li>
+                        <p>Include <label class="ui label">modernizr.js</label>, <label class="ui label">classy.js</label>, <label class="ui label">Snap.svg(optional)</label> and the essential css styles in the &lt;head&gt; tag</p>
+                        <div class="ui info message warning">
+                            <ul>
+                                <li>Your custom build of modernizr must contain <label class="ui label">cssanimations</label>, <label class="ui label">csstransforms3d</label>, and <label class="ui label">csstransitions</label></li>
+                                <li>Snap.svg is required when Mobox is using a SVG animation effect</li>
+                            </ul>
+                        </div>
+                        <pre><code data-language="html">
+&lt;script src="/path/to/mobox/dist/vendors/modernizr/modernizr.custom.min.js"&gt;&lt;/script&gt;
+&lt;script src="/path/to/mobox/dist/vendors/classor/dist/classy.min.js"&gt;&lt;/script&gt;
+&lt;script src="/path/to/mobox/dist/vendors/Snap.svg/dist/snap.svg.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/{{name}}.css"/&gt;
+</code></pre>
+                    </li>
+                    <li>
+                        <p>Include {{name}} effects's css style in the &lt;head&gt; tag</p>
+                        <div class="ui info message warning">You can either choose the bundled effect.css or just the indivial effect that you want.</div>
                         <ul>
-                            <li><a href="?shine" data-effect="shine">Shine</a></li>
-                            <li><a href="?piggy" data-effect="piggy">Piggy</a></li>
+                            <li>
+                            <p>The bundled effect.css</p>
+                            <pre><code data-language="html">
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effects.css"/&gt;
+</code></pre>
+                            </li>
+                            <li>
+                            <p>15 kinds of indivial effects</p>
+                            <pre><code data-language="html">
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-lv.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-nornor.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-dg.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-panther.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-lava.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-anna.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-piggy.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-xmagic.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-bruce.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-shine.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-aiden.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-albin.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-alex.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-kimi.css"/&gt;
+&lt;link rel="stylesheet" href="/path/to/mobox/dist/css/effect-jose.css"/&gt;
+</code></pre>
+                            </li>
                         </ul>
-                        <h2>Body</h2>
-                        <ul>
-                            <li><a data-effect="kimi" href="?kimi">Kimi</a></li>
-                            <li><a data-effect="lv" href="?lv" class="current-demo">LV</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>Move/Slide</h2>
-                        <ul>
-                            <li><a data-effect="albin" href="?albin">Albin</a></li>
-                            <li><a data-effect="bruce" href="?bruce">Bruce</a></li>
-                            <li><a href="?jose" data-effect="jose">Jose</a></li>
-                            <li><a href="?aiden" data-effect="aiden">Aiden</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>Sticky</h2>
-                        <ul>
-                            <li><a href="?xmagic" data-effect="xmagic">XMagic</a></li>
-                            <li><a href="?alex" data-effect="alex">Alex</a></li>
-                        </ul>
-                        <h2>Jelly</h2>
-                        <ul>
-                            <li><a href="?nornor" data-effect="nornor">NORNOR</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>SVG</h2>
-                        <ul>
-                            <li><a href="?dg" data-effect="dg">DG</a></li>
-                            <li><a href="?panther" data-effect="panther">Panther</a></li>
-                            <li><a href="?lava" data-effect="lava">Lava</a></li>
-                            <li><a href="?anna" data-effect="anna">Anna</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div><!-- /content -->
-        </div><!-- /container -->
-        <div id="notSvgMobox" class="mobox" data-effect="lv" data-effect-rel=".container">
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <h2 class="mobox-title"><strong>Howdy</strong>, I'm a dialog box</h2>
+                    </li>
+                    <li>
+                        <p>Prepare mobox's html template</p>
+                        <div class="ui info message">
+                            Mobox requires different template according to the chosen effect
+                        </div>
+                        <p>For example, if you use the effect <label class="ui label">dg</label>, you should include the following templates in your page.</p>
+                        <pre><code data-language="html">
+<script id="demoTpl1" type="text/x-mobox">
+<div data-morph-open-delay="250",
+    data-morph-open="M33,0h41c0,0,0,9.871,0,29.871C74,49.871,74,60,74,60H32.666h-0.125H6c0,0,0-10,0-30S6,0,6,0H33" 
+    data-morph-close="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"
+    class="mobox">
+
+    <div class="mobox-overlay"></div>
+    <div class="mobox-inner">
+        <span class="mobox-icon-close" data-mobox-close></span>
+        <div class="mobox-morph-shape"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                <path d="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"></path>
+            </svg>
+        </div>
+        <div class="mobox-core">
+            <div class="mobox-scene mobox-scene-default mobox-scene-active">
+                <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
                 <div class="mobox-cont"></div>
-                <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
-            </div>
-        </div>
-
-        <!-- SVG Effects -->
-
-        <div id="svgMobox-dg" 
-            data-morph-open-delay="250",
-            data-morph-open="M33,0h41c0,0,0,9.871,0,29.871C74,49.871,74,60,74,60H32.666h-0.125H6c0,0,0-10,0-30S6,0,6,0H33" 
-            data-morph-close="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"
-            class="mobox">
-
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <div class="mobox-morph-shape"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
-                        <path d="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"></path>
-                    </svg>
+                <div class="mobox-actions">
+                    <button class="mobox-btn-action mobox-btn-gray" data-mobox-close>Close</button>
+                    <button class="mobox-btn-action" id="actionScene">Show Loading Scene</button>
                 </div>
-                <div class="mobox-core">
-                    <div class="mobox-scene mobox-scene-default mobox-scene-active">
-                        <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                        <div class="mobox-cont"></div>
-                        <div class="mobox-actions">
-                            <button class="mobox-btn-action mobox-btn-gray" data-mobox-close>Close</button>
-                            <button class="mobox-btn-action" id="actionScene">Show Loading Scene</button>
+            </div>
+            <div class="mobox-scene mobox-scene-spin">
+                <h2 class="mobox-title">I'm Loading, please wait!</h2>
+                <div class="mobox-actions">
+                    <button class="mobox-btn-action" data-mobox-close>Close</button>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+</div>                   
+
+</script>
+</code></pre>
+                    </li>
+                    <li>
+                        <p>Add the {{name}}.js to your page:</p>
+                        <pre><code data-language="html">&lt;script src="/path/to/mobox/dist/js/{{name}}.min.js"&gt;&lt;/script&gt;</code></pre>
+                        <p>Or, load the {{name}}.js using your AMD loader like ```requirejs```</p>
+                        <pre><code data-language="javascript">define(['{{name}}'],function({{name}}){/* module logic goes here */});</code></pre>
+                    </li>
+                </ol>
+                <h3>Via Bower</h3>
+                <pre><code data-language="shell">bower install {{name}} --save</code></pre>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical segment">
+        <div class="ui page grid">
+            <div class="column">
+                <h1>API</h1>
+                <div class="ui segment">
+                    <label class="ui right ribbon label">#static</label>
+                    <h3 class="ui header">create</h3>
+                    <div class="ui info message">Create a mobox using specified options</div>
+                    <pre><code data-language="javascript">
+var mobox = Mobox.create({
+    /**
+     * mobox template, a template id or template dom object
+     */
+    tpl:'demoTpl1',
+    /**
+     * show the mobox after being created
+     */
+    autoShow:true,
+    /**
+     * mobox effect, default is 'lv'
+     */
+    effect:'dg',
+    /**
+     * prevent closing the mobox when clicking on the mobox overlay
+     */
+    sticky:true,
+    /**
+     * element actions inside the mobox
+     */
+    actions:{
+        //simple click action on element with id 'actionA'
+        actionA:function(obj){
+            alert(obj.el.id+' was clicked!!!');
+        },
+        //complex action with specified event name
+        actionB:{
+            evtName:'mouseover',
+            func:function(obj){
+                alert(obj.actionKey + ' was '+obj.evtName);
+            }
+        },
+        //an action that switching scene
+        actionScene:function(obj){
+            this.showScene('spin',{
+                'btn-action':{
+                    'attrs':{
+                        'title':'Do not close me!!!'
+                    }
+                }, 
+                title:'I AM A TITLE, I AM LOADING...'
+            });
+        }
+    } 
+});
+
+</code></pre>
+                    <script id="demoTpl1" type="text/x-mobox">
+                    <div data-morph-open-delay="250",
+                        data-morph-open="M33,0h41c0,0,0,9.871,0,29.871C74,49.871,74,60,74,60H32.666h-0.125H6c0,0,0-10,0-30S6,0,6,0H33" 
+                        data-morph-close="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"
+                        class="mobox">
+
+                        <div class="mobox-overlay"></div>
+                        <div class="mobox-inner">
+                            <span class="mobox-icon-close" data-mobox-close></span>
+                            <div class="mobox-morph-shape"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                                    <path d="M33,0h41c0,0-5,9.871-5,29.871C69,49.871,74,60,74,60H32.666h-0.125H6c0,0-5-10-5-30S6,0,6,0H33"></path>
+                                </svg>
+                            </div>
+                            <div class="mobox-core">
+                                <div class="mobox-scene mobox-scene-default mobox-scene-active">
+                                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                                    <div class="mobox-cont"></div>
+                                    <div class="mobox-actions">
+                                        <button class="mobox-btn-action mobox-btn-gray" data-mobox-close>Close</button>
+                                        <button class="mobox-btn-action" id="actionScene">Show Loading Scene</button>
+                                    </div>
+                                </div>
+                                <div class="mobox-scene mobox-scene-spin">
+                                    <h2 class="mobox-title">I'm Loading, please wait!</h2>
+                                    <div class="mobox-actions">
+                                        <button class="mobox-btn-action" data-mobox-close>Close</button>
+                                    </div>
+                                </div>
+                            </div>   
                         </div>
-                    </div>
-                    <div class="mobox-scene mobox-scene-spin">
-                        <h2 class="mobox-title">I'm Loading, please wait!</h2>
-                        <div class="mobox-actions">
-                            <button class="mobox-btn-action" data-mobox-close>Close</button>
-                        </div>
-                    </div>
-                </div>   
-            </div>
 
-        </div>
+                    </div>                   
 
-        <div id="svgMobox-lava" 
-            data-morph-open-duration="1500"
-            data-morph-open-delay="150"
-            data-morph-open="M0,33.699V0c0,0,13.458,0,40.125,0C66.793,0,80,0,80,0v33.974v0.103V60c0,0-13.333,0-40,0c-26.667,0-40,0-40,0V33.699" 
-            data-morph-close="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"
-            class="mobox">
-
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <div class="mobox-morph-shape"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
-                        <path d="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"></path>
-                    </svg>
-                </div>                
-                <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                    <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
-                </div>   
-            </div>
-
-        </div>
-
-        <div id="svgMobox-panther" 
-            data-morph-open-duration="400"
-            data-morph-close-duration="400"
-            data-morph-open-effect="easeinout"
-            data-morph-close-effect="easeinout"
-            data-morph-open="M0,0h80c0,0,0,9.977,0,29.834c0,19.945,0,30.249,0,30.249H0c0,0,0-10.055,0-30.332C0,8.219,0,0,0,0z" 
-            data-morph-close="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"
-                    </div>
-                </div>   
-            </div>
-
-        </div>
-
-        <div id="svgMobox-lava" 
-            data-morph-open-duration="1500"
-            data-morph-open-delay="150"
-            data-morph-open="M0,33.699V0c0,0,13.458,0,40.125,0C66.793,0,80,0,80,0v33.974v0.103V60c0,0-13.333,0-40,0c-26.667,0-40,0-40,0V33.699" 
-            data-morph-close="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"
-            class="mobox">
-
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <div class="mobox-morph-shape"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
-                        <path d="M0,33.699V0c0,0,13.208,11,39.875,11C66.543,11,80,0,80,0v33.974v0.103v13.111C80,47.188,66.667,60,40,60C13.333,60,0,47.062,0,47.062V33.699"></path>
-                    </svg>
-                </div>                
-                <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                    <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
-                </div>   
-            </div>
-
-        </div>
-
-        <div id="svgMobox-panther" 
-            data-morph-open-duration="400"
-            data-morph-close-duration="400"
-            data-morph-open-effect="easeinout"
-            data-morph-close-effect="easeinout"
-            data-morph-open="M0,0h80c0,0,0,9.977,0,29.834c0,19.945,0,30.249,0,30.249H0c0,0,0-10.055,0-30.332C0,8.219,0,0,0,0z" 
-            data-morph-close="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"
-            class="mobox">
-
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <div class="mobox-morph-shape"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
-                        <path d="M0,29.75h80c0,0-3.083,0.014-3.083,0.041c0,0.028,3.083,0.042,3.083,0.042H0c0,0,3.084-0.014,3.084-0.042C3.084,29.762,0,29.75,0,29.75z"></path>
-                    </svg>
-                </div>               
-                <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                    <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
-                </div>   
-            </div>
-
-        </div>
-
-        <div id="svgMobox-anna" class="mobox">
-
-            <div class="mobox-overlay"></div>
-            <div class="mobox-inner">
-                <span class="mobox-icon-close" data-mobox-close></span>
-                <div class="mobox-morph-shape">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 560 280" preserveAspectRatio="none">
-                        <rect x="3" y="3" fill="none" width="556" height="276"/>
-                    </svg>
-                </div> 
-                <div class="mobox-core">
-                    <h2 class="mobox-title" id="actionB"><strong>Howdy</strong>, I'm a svn mobox</h2>
-                    <div class="mobox-cont"></div>
-                    <div class="mobox-actions"><button id="actionA" class="mobox-btn-action" data-mobox-close>Close</button></div>
-                </div>   
-            </div>
-
-        </div>
-        <!--/ SVG Effects -->
-        <script src="dist/vendors/Snap.svg/dist/snap.svg-min.js"></script>
-        <script src="dist/vendors/classor/dist/classy.js"></script>
-        <script src="dist/js/mobox.js"></script>
-        <script>
-            (function() {
-
-                // get mobox instance according to the selected effect
-                var getMobox = function(eff){
-                    var opts = {
-                        sticky:true,
-                        effect:eff,
-                        actions:{
-                            actionA:function(obj){
-                                alert(obj.el.id+' was clicked!!!');
-                            },
-                            actionB:{
-                                evtName:'mouseover',
-                                func:function(obj){
-                                    alert(obj.actionKey + ' was '+obj.evtName);
+                    </script>
+                    <script>
+                    function run(){
+                         var mobox = Mobox.create({
+                            /**
+                             * mobox template, a template id or template dom object
+                             */
+                            tpl:'demoTpl1',
+                            /**
+                             * show the mobox after being created
+                             */
+                            autoShow:true,
+                            /**
+                             * mobox effect, default is 'lv'
+                             */
+                            effect:'dg',
+                            /**
+                             * prevent closing the mobox when clicking on the mobox overlay
+                             */
+                            sticky:true,
+                            /**
+                             * element actions inside the mobox
+                             */
+                            actions:{
+                                //simple click action on element with id 'actionA'
+                                actionA:function(obj){
+                                    alert(obj.el.id+' was clicked!!!');
+                                },
+                                //complex action with specified event name
+                                actionB:{
+                                    evtName:'mouseover',
+                                    func:function(obj){
+                                        alert(obj.actionKey + ' was '+obj.evtName);
+                                    }
+                                },
+                                //an action that switching scene
+                                actionScene:function(obj){
+                                    this.showScene('spin',{
+                                        'btn-action':{
+                                            'attrs':{
+                                                'title':'Do not close me!!!'
+                                            }
+                                        }, 
+                                        title:'I AM A TITLE, I AM LOADING...'
+                                    });
                                 }
-                            },
-                            actionScene:function(obj){
-                                this.showScene('spin',{
-                                    'btn-action':{
-                                        'attrs':{
-                                            'title':'Do not close me!!!'
-                                        }
-                                    }, 
-                                    title:'I AM A TITLE, I AM LOADING...'
-                                });
-                            }
-                        }
-                    };
+                            } 
+                        });
+                    }
+                    </script>
+                    <div onclick="run();" class="ui blue button">Run</div>
+                </div>
+                <div class="ui segment" id="test">
+                    <label class="ui right ribbon label">#prototype</label>
+                    <h3 class="ui header">show</h3>
+                    <p>show a mobox</p>
+                    <pre><code data-language="javascript">
+//show a mobox
+mobox.show();
+</code></pre>
+                    <p>show a mobox, update the innerHTML of the element with class 'mobox-title'</p>
+                    <pre><code data-language="javascript">
+mobox.show({
+    title:'hi, i am a mobox'
+});
+</code></pre>
+                    <p>show a mobox, update the title attribute of the element with attribute 'data-xxx'</p>
+                    <pre><code data-language="javascript">
+mobox.show({
+    xxx:{
+        attrs:{
+            title:'hi, i am a title attribute updated by mobox'
+        }
+    }
+});
+</code></pre>
+                    <a class="ui blue button" href="demo.html?dg">See the demo</a>
 
-                    var domElm = document.getElementById( Mobox.isSvgEffect(eff) ? ('svgMobox-'+eff) : 'notSvgMobox' );                    
- 
-                    return new Mobox( domElm, opts );
+                </div>
+                
+                <div class="ui segment">
+                    <label class="ui right ribbon label">#prototype</label>
+                    <h3 class="ui header">hide</h3>
+                    <p>hide a mobox</p>
+                    <pre><code data-language="javascript">
+//hide a mobox
+mobox.hide();
+</code></pre>
+                </div>
+                 <div class="ui segment">
+                    <label class="ui right ribbon label">#prototype</label>
+                    <h3 class="ui header">showScene</h3>
+                    <p>switch to the scene <label class="ui label">spin</label></p>       
+                    <pre><code data-language="javascript">
+//switch to the mobox scene element with class named 'mobox-scene mobox-scene-spin' 
+mobox.showScene('spin');
+</code></pre>
+                    <p>switch to the scene <label class="ui label">spin</label>, and apply data to that scene, similar to the <label class="ui label">show</label> method. </p>       
+                    <pre><code data-language="javascript">
+mobox.showScene('spin', {
+    'btn-action':{
+        'attrs':{
+            'title':'Do not close me!!!'
+        }
+    }, 
+    title:'I AM A TITLE, I AM LOADING...'
+});
+</code></pre>
 
-                };
+                    <div class="ui info message">
+                        <ul>
+                            <li>Mobox support switching multiple scenes</li>
+                            <li>A Mobox scene's className should adhere to the convention <label class="ui label">mobox-scene mobox-scene-xxx</label>, where the <label class="ui label">xxx</label> is the scene's name</li>
+                            <li>You must provide a default scene <label class="ui label">mobox-scene mobox-scene-default</label> when using the scene feature</li>
+                        </ul>
+                    </div>
 
+                    <a class="ui blue button" href="demo.html?dg">See the demo</a>
 
-                var effect = location.search.replace('?','')||'lv',
-                    container = document.getElementById( 'container' ),
-                    dlgtrigger = document.querySelector( '.trigger' ),
-                    dlg = getMobox( effect ),
-                    allEffects = document.getElementById('menu').querySelectorAll('[data-effect]');
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+    <div class="ui vertical segment">
+        <div class="ui page grid">
+            <div class="column">
+                <h1>Build</h1>
+                <p>
+                  To build `{{name}}` from sources you need to install Gulp
+                </p>
+                <pre><code data-language="shell">$ npm install gulp -g</code></pre>
+                <p>
+                  Then navigate in terminal to the downloaded sources and install some required modules
+                </p>
+                <pre><code data-language="shell">$ npm install gulp gulp-uglify gulp-swig gulp-rename</code></pre>
+                <p>
+                  Then run Gulp
+                </p>
+                <pre><code data-language="shell">$ gulp</code></pre>
+                <p>
+                  You can take compressed and optimized files from <b>dist</b> folder
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui inverted black vertical segment">
+        <div class="ui page grid">
+            <div class="column">
+                <p>
+                  Created by <a href="http://faso.me">Levin Van</a>, 2015
+                  <br />
+                  <br />Site built with awesome <a href="http://semantic-ui.com">Semantic UI</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5510fb2a3e0ad455" async="async"></script>
+
+    <link href="https://cdn.rawgit.com/ccampbell/rainbow/master/themes/solarized-dark.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.rawgit.com/ccampbell/rainbow/master/js/rainbow.min.js" type="text/javascript"></script>
     
-                dlgtrigger.addEventListener( 'click', dlg.show.bind(dlg) );
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?{{baiduTJCode}}";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 
-                var forEach = function(arr,fn){
-                    var len = arr.length;
-                    for(var i=0;i<len;i++){
-                        fn(arr[i]);
-                    }
-                };
+ </body>
 
-                var resetMenu = function(){
-                    forEach(allEffects,function(item){
-                        classy.remove(item,'current-demo');
-                    });
-                };
-
-
-                resetMenu();
-
-                forEach(allEffects,function(elemEffect){
-                    if(elemEffect.getAttribute('data-effect') === effect ){
-                        classy.add(elemEffect,'current-demo');
-                    }
-
-                });
-
-            })();
-        </script>
-    </body>
 </html>
