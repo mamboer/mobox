@@ -6,7 +6,7 @@
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1429010621757 
+ * built at 1429016929423 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -458,14 +458,16 @@
         var dom = opts.dom,
             tpl = opts.tpl,
             tempDiv = null,
-            inst = null;
+            inst = null,
+            data = opts.data;
+
         //a valid dom element or dom id was passed in
         dom = getDom(dom);
         delete opts.dom;
         delete opts.tpl;
         if( dom ){
             inst = new Mobox(dom, opts);
-            return ( opts.autoShow ? inst.show() : inst );
+            return ( opts.autoShow ? inst.show(data) : inst );
         } 
         dom = getDomByTpl(tpl);
         // invalid dom or tpl
@@ -476,7 +478,7 @@
 
         opts.destroyAfterClosed = dom.dynamic;
         inst = new Mobox(dom.dom, opts);
-        return ( opts.autoShow ? inst.show() : inst );
+        return ( opts.autoShow ? inst.show(data) : inst );
 
     };    
 
