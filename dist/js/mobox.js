@@ -6,7 +6,7 @@
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1429017448914 
+ * built at 1429032098661 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -107,12 +107,13 @@
     }
     function applyDataToDoms(doms,data){
         // this reference to the Mobox instance 
+        var me = this;
         forEach(doms,function(dom){
             
-            classy.remove(dom,this.options.clHide);
+            classy.remove(dom,me.options.clHide);
 
-            if( data === null && this.options.hideElementIfValueNull ) {
-                classy.add(dom,this.options.clHide);
+            if( data === null && me.options.hideElementIfValueNull ) {
+                classy.add(dom, me.options.clHide);
                 return;
             }
 
@@ -313,7 +314,7 @@
 
         if(!targetScene) return;
 
-        applyData(targetScene, data);
+        applyData.call(me,targetScene, data);
         classy.add(targetScene,me.options.clSceneActive);
 
     };
