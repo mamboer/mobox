@@ -1,12 +1,12 @@
 /*!
- * mobox 1.0.3
- * MOBOX = Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
+ * mobox 1.0.5
+ * Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
  * @dependencies 
  *  1. classy.js <http://faso.me/classy>
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1428422439564 
+ * built at 1429016929423 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -35,8 +35,7 @@
 			};
 			if( support.animations ) {
 				el.addEventListener( animEndEventName, onEndCallbackFn );
-			}
-			else {
+			} else {
 				onEndCallbackFn();
 			}
 		};
@@ -57,6 +56,102 @@
 
     function validDom(dom, tagName){
         return (dom && dom.tagName && dom.nodeName && dom.nodeType === 1 && ( !tagName ? true: (tagName === dom.tagName) ) );    
+    }
+
+    function getDom(dom,tagName){
+        if(!dom) return null;
+        if(typeof(dom)==='string'){
+            return document.getElementById(dom);    
+        }
+        if(validDom( dom, tagName )){
+            return dom;
+        }
+        return null;
+    }
+
+    function getDomByTpl(tpl){
+        var  tempDiv = document.createElement('div'),
+            dynamicDom = false;
+        // a template script dom element was passed in
+        if( validDom( tpl,'SCRIPT' ) ){
+            tempDiv.innerHTML = tpl.innerHTML;
+        } else if( typeof(tpl)==='string' ){ 
+            if( tpl.indexOf('<')!==-1 && tpl.indexOf('>')!==-1 ){
+                tempDiv.innerHTML = tpl;
+            } else if( (tpl = document.getElementById(tpl)) ) {
+                tempDiv.innerHTML = tpl.innerHTML;
+            } else {
+                tempDiv = null;
+            }
+        } else {
+            tempDiv = null;    
+        }    
+
+        if(!tempDiv || !tempDiv.children[0]){
+            return null;    
+        }
+        
+        tempDiv = tempDiv.children[0];
+        if(!tempDiv.id){
+            dynamicDom = true;
+            tempDiv.id = 'mobox-'+(ids++);
+        }
+        //insert it to the dom
+        document.body.appendChild(tempDiv);
+
+        return ({
+            dynamic:dynamicDom,
+            dom:tempDiv
+        });
+
+    }
+    function applyDataToDoms(doms,data){
+        // this reference to the Mobox instance 
+        forEach(doms,function(dom){
+            
+            classy.remove(dom,this.options.clHide);
+
+            if( data === null && this.options.hideElementIfValueNull ) {
+                classy.add(dom,this.options.clHide);
+                return;
+            }
+
+            //attributes data
+            if( typeof(data) === 'object' && data.attrs ){
+                for(var d1 in data.attrs){
+                    dom.setAttribute( d1, data.attrs[d1] );    
+                }
+                return;
+            }
+            //normal data
+            if( dom.tagName === 'INPUT' &&  (dom.type === 'checkbox' || dom.type === 'radio') ){
+                dom.checked = !!data;  
+            } else if(typeof(dom.value) !== 'undefined'){
+                dom.value = data;    
+            }else if( typeof(dom.innerHTML) !== 'undefined'){
+                dom.innerHTML = data;    
+            }           
+        });
+
+    }
+    // apply data to dom
+    function applyData(dom, data){
+        //this reference to the Mobox instance
+        var tempElems,tempElemData;
+        //prepare data
+        for(var d in data){
+            tempElems = dom.querySelectorAll('.mobox-'+d);
+            tempElemData = data[d];
+            if(tempElems.length > 0){
+                //NOTE：no return here for further parsing
+                applyDataToDoms.call(this,tempElems, tempElemData);
+            }
+            tempElems = dom.querySelectorAll('[data-'+d+']');
+
+            if(tempElems.length === 0) continue;
+            applyDataToDoms.call(this,tempElems, tempElemData);
+        }
+
     }
 
 	/**
@@ -82,9 +177,6 @@
             morphTag:el.getAttribute('data-morph-tag')||'path',
             morphOpenEffect:el.getAttribute('data-morph-open-effect') || 'elastic',
             morphCloseEffect:el.getAttribute('data-morph-close-effect') || 'easeout',
-            sticky:false,
-            clScene:'mobox-scene',
-            clSceneActive:'mobox-scene-active',
             actions:{
                 btnIdXXX:function(obj){
                     //this reference to the Mobox instance
@@ -108,15 +200,21 @@
         this.isOpen = false;
 		this._initEvents();
         this._initScenes();
-	};
+	}
 
     Mobox.prototype.destroy = function(){
         this.el.parentNode.removeChild(this.el);
     };
-
+    /**
+     * default options
+     */
 	Mobox.prototype.options = {
-		// callbacks
+        sticky:false,
+        clScene:'mobox-scene',
+        clHide: 'hide',
+        clSceneActive:'mobox-scene-active',
         destroyAfterClosed:false,
+        hideElementIfValueNull:true,
         /**
          * callback for opening
          */
@@ -215,26 +313,7 @@
 
         if(!targetScene) return;
 
-        //prepare scene data
-        for(var d in data){
-            tempElem = targetScene.querySelector('.mobox-'+d) || targetScene.querySelector('[data-'+d+']');
-            tempElemData = data[d];
-            if(!tempElem) continue;
-            //attributes data
-            if( typeof(tempElemData) === 'object' && tempElemData.attrs ){
-                for(var d1 in tempElemData.attrs){
-                    tempElem.setAttribute( d1, tempElemData.attrs[d1] );    
-                }
-                continue;
-            }
-            //normal data
-            if(typeof(tempElem.value) !== 'undefined'){
-                tempElem.value = data[d];    
-            }else if( typeof(tempElem.innerHTML) !== 'undefined'){
-                tempElem.innerHTML = data[d];    
-            }
-        }
-
+        applyData(targetScene, data);
         classy.add(targetScene,me.options.clSceneActive);
 
     };
@@ -261,7 +340,7 @@
 
         //element actions
         for(var actionKey in this.options.actions){
-            var elem = document.getElementById(actionKey),
+            var elem = document.getElementById(actionKey) || this.el.querySelector(actionKey) || this.el.querySelector('[data-mobox-'+ actionKey +']'),
                 action = this.options.actions[actionKey],
                 actionFun = action.evtName ? action.func:action;
                 evtName = action.evtName || 'click';
@@ -284,13 +363,17 @@
         }
     };
 
-    Mobox.prototype.show = function(){
+    Mobox.prototype.show = function(data){
+        data = this.options.data = (data || {});
         var self = this;
-        if(this.isOpen) return;
+        applyData.call(this,this.el,data);
+
+        if(this.isOpen) {
+            return this;
+        }
 
         classy.add( this.el, 'mobox-open' );
         toggleClass( this.elemsRel, this.effectClass + '-open' );
-	
         
         onEndAnimation( this.el.querySelector( '.mobox-inner' ), function() {
             self.options.onOpened(self);
@@ -304,7 +387,7 @@
         }
 
         this.isOpen = true;
-
+        return this;
     };
 
     Mobox.prototype.hide = function(){
@@ -315,11 +398,6 @@
         toggleClass(this.elemsRel, this.effectClass + '-open' );
         classy.add( self.el, 'mobox-close' );
         
-        onEndAnimation( this.el.querySelector( '.mobox-inner' ), function() {
-            classy.remove( self.el, 'mobox-close' );
-            self.options.onClosed( self );
-        } );
-
         // callback on close
         this.options.onClose( this );
 
@@ -327,7 +405,14 @@
         if( this.svg ) {
             this.svg.onClose(this);
         }
-
+        
+        onEndAnimation( this.el.querySelector( '.mobox-inner' ), function() {
+            classy.remove( self.el, 'mobox-close' );
+            if(self.options.destroyAfterClosed){
+                self.destroy();    
+            }
+            self.options.onClosed( self );
+        } );
         this.isOpen = false;
     };
 
@@ -359,30 +444,42 @@
     };
 
     /**
-     * show a specified mobox
+     * create a specified mobox
      * @param {object} opts options, like {'tpl':'template id or template dom element', 'dom':'dom id or dom element object'}
      * @return {Mobox} the mobox instance
      */
-    Mobox.show = function(opts){
+    Mobox.create = function(opts){
         opts = opts || {};
+
+        if(typeof( opts.autoShow ) === 'undefined' ){
+            opts.autoShow = true;    
+        }
+
         var dom = opts.dom,
-            tpl = opts.tpl;
-        //a valid dom element was passed in
-        if( validDom( dom ) ){
-            delete opts.dom;
-            return ( new Mobox(dom,opts) );
+            tpl = opts.tpl,
+            tempDiv = null,
+            inst = null,
+            data = opts.data;
+
+        //a valid dom element or dom id was passed in
+        dom = getDom(dom);
+        delete opts.dom;
+        delete opts.tpl;
+        if( dom ){
+            inst = new Mobox(dom, opts);
+            return ( opts.autoShow ? inst.show(data) : inst );
         } 
-
-        //a dom id was passed in
-        if( typeof(dom)==='string' && ( dom = document.getElementById( dom ) )){
-            delete opts.dom;
-            return ( new Mobox(dom,opts) );
+        dom = getDomByTpl(tpl);
+        // invalid dom or tpl
+        if( !dom ) {
+            alert('Invalid parameters! The parameter "options" must contain a property named either "dom" or "tpl"! ');
+            return null;
         }
 
-        // a tempate script dom element was passed in
-        if( validDom( tpl,'SCRIPT' ) ){
-                        
-        }
+        opts.destroyAfterClosed = dom.dynamic;
+        inst = new Mobox(dom.dom, opts);
+        return ( opts.autoShow ? inst.show(data) : inst );
+
     };    
 
 	// add to global namespace
