@@ -6,7 +6,7 @@
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1429016929423 
+ * built at 1429017448914 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -446,9 +446,10 @@
     /**
      * create a specified mobox
      * @param {object} opts options, like {'tpl':'template id or template dom element', 'dom':'dom id or dom element object'}
+     * @param {object} data extra data object for updating mobox's dom
      * @return {Mobox} the mobox instance
      */
-    Mobox.create = function(opts){
+    Mobox.create = function(opts, data){
         opts = opts || {};
 
         if(typeof( opts.autoShow ) === 'undefined' ){
@@ -458,8 +459,7 @@
         var dom = opts.dom,
             tpl = opts.tpl,
             tempDiv = null,
-            inst = null,
-            data = opts.data;
+            inst = null;
 
         //a valid dom element or dom id was passed in
         dom = getDom(dom);
