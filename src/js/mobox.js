@@ -107,12 +107,13 @@
     }
     function applyDataToDoms(doms,data){
         // this reference to the Mobox instance 
+        var me = this;
         forEach(doms,function(dom){
             
-            classy.remove(dom,this.options.clHide);
+            classy.remove(dom,me.options.clHide);
 
-            if( data === null && this.options.hideElementIfValueNull ) {
-                classy.add(dom,this.options.clHide);
+            if( data === null && me.options.hideElementIfValueNull ) {
+                classy.add(dom, me.options.clHide);
                 return;
             }
 
@@ -313,7 +314,7 @@
 
         if(!targetScene) return;
 
-        applyData(targetScene, data);
+        applyData.call(me,targetScene, data);
         classy.add(targetScene,me.options.clSceneActive);
 
     };
