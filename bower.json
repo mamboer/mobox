@@ -1,6 +1,6 @@
 {
   "name": "mobox",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "homepage": "https://github.com/mamboer/mobox",
   "authors": ["Levin Van"],
   "description": "Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects",

@@ -1,6 +1,6 @@
 {
   "name": "mobox",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "title": "Modern Dialog + Pop Box + Overlay + Extensible CSS3 Effects",
   "description": "Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop's DialogEffect at github.com/codrops/DialogEffects",
   "main": "dist/mobox.js",
