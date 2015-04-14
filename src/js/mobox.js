@@ -106,8 +106,16 @@
 
     }
     function applyDataToDoms(doms,data){
-    
+        // this reference to the Mobox instance 
         forEach(doms,function(dom){
+            
+            classy.remove(dom,this.options.clHide);
+
+            if( data === null && this.options.hideElementIfValueNull ) {
+                classy.add(dom,this.options.clHide);
+                return;
+            }
+
             //attributes data
             if( typeof(data) === 'object' && data.attrs ){
                 for(var d1 in data.attrs){
@@ -128,18 +136,20 @@
     }
     // apply data to dom
     function applyData(dom, data){
+        //this reference to the Mobox instance
         var tempElems,tempElemData;
         //prepare data
         for(var d in data){
             tempElems = dom.querySelectorAll('.mobox-'+d);
             tempElemData = data[d];
             if(tempElems.length > 0){
-                applyDataToDoms(tempElems, tempElemData);
+                //NOTE：no return here for further parsing
+                applyDataToDoms.call(this,tempElems, tempElemData);
             }
             tempElems = dom.querySelectorAll('[data-'+d+']');
 
             if(tempElems.length === 0) continue;
-            applyDataToDoms(tempElems, tempElemData);
+            applyDataToDoms.call(this,tempElems, tempElemData);
         }
 
     }
@@ -201,8 +211,10 @@
 	Mobox.prototype.options = {
         sticky:false,
         clScene:'mobox-scene',
+        clHide: 'hide',
         clSceneActive:'mobox-scene-active',
         destroyAfterClosed:false,
+        hideElementIfValueNull:true,
         /**
          * callback for opening
          */
@@ -354,7 +366,7 @@
     Mobox.prototype.show = function(data){
         data = this.options.data = (data || {});
         var self = this;
-        applyData(this.el,data);
+        applyData.call(this,this.el,data);
 
         if(this.isOpen) {
             return this;
