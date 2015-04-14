@@ -446,9 +446,10 @@
     /**
      * create a specified mobox
      * @param {object} opts options, like {'tpl':'template id or template dom element', 'dom':'dom id or dom element object'}
+     * @param {object} data extra data object for updating mobox's dom
      * @return {Mobox} the mobox instance
      */
-    Mobox.create = function(opts){
+    Mobox.create = function(opts, data){
         opts = opts || {};
 
         if(typeof( opts.autoShow ) === 'undefined' ){
@@ -458,8 +459,7 @@
         var dom = opts.dom,
             tpl = opts.tpl,
             tempDiv = null,
-            inst = null,
-            data = opts.data;
+            inst = null;
 
         //a valid dom element or dom id was passed in
         dom = getDom(dom);
