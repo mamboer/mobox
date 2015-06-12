@@ -11,7 +11,7 @@ html,body{
 }
 body {
 	background: #333;
-	color: #c94e50;
+	color: #fff;
 	font-weight: 400;
 	font-size: 1em;
 	font-family: 'Raleway', Arial, sans-serif;
@@ -24,7 +24,7 @@ a, button {
 }
 
 a:hover, a:focus {
-	color: #c94e50;
+	color: #fff;
 	outline: none;
 }
 
@@ -34,7 +34,7 @@ button {
 	font-weight: 600;
 	border: none;
 	color: #fff;
-	background: #c94e50;
+	background: #2780e3;
 }
 
 .content {
@@ -56,7 +56,7 @@ button {
 }
 
 button.trigger {
-	background: #c94e50;
+	background: #2780e3;
 	color: #fff;
 	border: none;
 }
@@ -85,7 +85,7 @@ button.trigger {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-size: 72.25%;
-	color: #9BA890;
+    color: #333;
 }
 
 .menu ul {
@@ -140,7 +140,7 @@ button.trigger {
 	height: 2px;
 	top: 50%;
 	margin-top: -1px;
-	background: #c94e50;
+	background: #2780e3;
 }
 
 .codrops-header h1 span::before {

@@ -1,3 +1,10 @@
+@mobox-btn-bg:              #2780e3;
+@mobox-btn-bg-hover:        lighten(@mobox-btn-bg,5%);
+@mobox-btn-bg-light:        #222222;
+@mobox-btn-bg-light-hover:  lighten(@mobox-btn-bg-light, 5%);
+@mobox-font-color:          #333333;
+@mobox-warning:             #ff7518;
+
 .mobox,
 .mobox-overlay {
 	width: 100%;
@@ -7,7 +14,7 @@
 }
 
 .mobox {
-    color:#c94e50;	
+    color: @mobox-font-color;	
     position: fixed;
 	z-index:9999;
     display: flex;
@@ -26,7 +33,6 @@
 }
 
 .mobox-icon-close {
-    @hoverColor:#c94e50;
     opacity:0;
     width: 48px;
     height: 48px;
@@ -62,10 +68,10 @@
 
     &:hover, 
     &:focus {
-        border-color:@hoverColor;
+        border-color:@mobox-btn-bg-light;
         outline: none;
         &::before, &::after{
-            background:@hoverColor;
+            background:@mobox-btn-bg-light;
         }
     }
 }
@@ -136,8 +142,17 @@
     font-weight: 600;
     border: none;
     color: #fff;
-    background: #c94e50;  
+    background: @mobox-btn-bg;
+    &,&:hover {
+        text-decoration:none;
+    }
+    &:hover {
+        background: @mobox-btn-bg-hover;
+    }
 }
 .mobox-btn-gray {
-    background:#aaaaaa;
+    background: @mobox-btn-bg-light;
+    &:hover {
+        background: @mobox-btn-bg-light-hover;
+    }
 }

@@ -1,12 +1,12 @@
 /*!
- * mobox 1.0.5
+ * mobox 1.0.6
  * Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
  * @dependencies 
  *  1. classy.js <http://faso.me/classy>
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1429320912578 
+ * built at 1434080092574 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {

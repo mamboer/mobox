@@ -1,10 +1,10 @@
 {
   "name": "mobox",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://github.com/mamboer/mobox",
   "authors": ["Levin Van"],
   "description": "Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects",
-  "main": "dist/mobox.js",
+  "main": "dist/js/mobox.js,dist/css/mobox.css",
   "keywords": ["Dialog","Modal","Popbox","Overlay","Dialog Effects","mobox","css3","animation"],
   "license": "MIT",
   "dependencies":{
