@@ -73,6 +73,7 @@ button.trigger {
 
 .menu > div {
 	flex: auto;
+	-webkit-flex: auto;
 	text-align: left;
 	margin: 0.25em;
 	padding: 2em 3em;
