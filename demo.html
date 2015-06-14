@@ -72,7 +72,7 @@
             <div class="mobox-overlay"></div>
             <div class="mobox-inner">
                 <span class="mobox-icon-close" data-mobox-close></span>
-                <h2 class="mobox-title"><strong>Howdy</strong>, I'm a dialog box</h2>
+                <h2 class="mobox-title"><strong>Hello</strong>, I'm Mobox V{{version}}</h2>
                 <div class="mobox-cont"></div>
                 <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
             </div>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="mobox-core">
                     <div class="mobox-scene mobox-scene-default mobox-scene-active">
-                        <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                        <h2 class="mobox-title"><strong>Hello</strong>, I'm Mobox V{{version}}</h2>
                         <div class="mobox-cont"></div>
                         <div class="mobox-actions">
                             <button class="mobox-btn-action mobox-btn-gray" data-mobox-close>Close</button>
@@ -104,7 +104,10 @@
                         </div>
                     </div>
                     <div class="mobox-scene mobox-scene-spin">
-                        <h2 class="mobox-title">I'm Loading, please wait!</h2>
+                        <h2 class="mobox-title">
+                            <img src="img/loader.gif" alt="loading"/><br/>
+                            I'm Loading!
+                        </h2>
                         <div class="mobox-actions">
                             <button class="mobox-btn-action" data-mobox-close>Close</button>
                         </div>
@@ -130,7 +133,7 @@
                     </svg>
                 </div>                
                 <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <h2 class="mobox-title"><strong>Hello</strong>, I'm Mobox V{{version}}</h2>
                     <div class="mobox-cont"></div>
                     <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
                 </div>   
@@ -156,7 +159,7 @@
                     </svg>
                 </div>               
                 <div class="mobox-core">
-                    <h2 class="mobox-title"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <h2 class="mobox-title"><strong>Hello</strong>, I'm Mobox V{{version}}</h2>
                     <div class="mobox-cont"></div>
                     <div class="mobox-actions"><button class="mobox-btn-action" data-mobox-close>Close</button></div>
                 </div>   
@@ -175,7 +178,7 @@
                     </svg>
                 </div> 
                 <div class="mobox-core">
-                    <h2 class="mobox-title" id="actionB"><strong>Howdy</strong>, I'm a svn mobox</h2>
+                    <h2 class="mobox-title"><strong>Hello</strong>, I'm Mobox V{{version}}</h2>
                     <div class="mobox-cont"></div>
                     <div class="mobox-actions"><button id="actionA" class="mobox-btn-action" data-mobox-close>Close</button></div>
                 </div>   
@@ -210,8 +213,7 @@
                                         'attrs':{
                                             'title':'Do not close me!!!'
                                         }
-                                    }, 
-                                    title:'I AM A TITLE, I AM LOADING...'
+                                    } 
                                 });
                             }
                         }
