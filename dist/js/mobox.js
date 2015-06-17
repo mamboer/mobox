@@ -1,12 +1,12 @@
 /*!
- * mobox 1.0.6
+ * mobox 1.0.7
  * Modern Dialog Width Extensible CSS3 Effects, Inspired by Codrop&#39;s DialogEffect at github.com/codrops/DialogEffects 
  * @dependencies 
  *  1. classy.js <http://faso.me/classy>
  *  2. modernizr
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * built at 1434268184016 
+ * built at 1434512032801 
  * Copyright 2015, FASO.ME <http://www.faso.me>
  */
 (function (root, factory) {
@@ -127,9 +127,11 @@
             //normal data
             if( dom.tagName === 'INPUT' &&  (dom.type === 'checkbox' || dom.type === 'radio') ){
                 dom.checked = !!data;  
+            } else if(dom.tagName === 'BUTTON'){
+                dom.innerHTML = data;    
             } else if(typeof(dom.value) !== 'undefined'){
                 dom.value = data;    
-            }else if( typeof(dom.innerHTML) !== 'undefined'){
+            } else if( typeof(dom.innerHTML) !== 'undefined'){
                 dom.innerHTML = data;    
             }           
         });
