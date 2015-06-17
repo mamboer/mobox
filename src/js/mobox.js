@@ -127,9 +127,11 @@
             //normal data
             if( dom.tagName === 'INPUT' &&  (dom.type === 'checkbox' || dom.type === 'radio') ){
                 dom.checked = !!data;  
+            } else if(dom.tagName === 'BUTTON'){
+                dom.innerHTML = data;    
             } else if(typeof(dom.value) !== 'undefined'){
                 dom.value = data;    
-            }else if( typeof(dom.innerHTML) !== 'undefined'){
+            } else if( typeof(dom.innerHTML) !== 'undefined'){
                 dom.innerHTML = data;    
             }           
         });
